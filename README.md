@@ -2,6 +2,8 @@
 
 This repository contains code for multi modal retrieval
 
+This project involves implementing a multi-modal Bi-encoder using both ResNet and BERT for image and text representations.
+
 # Data
 
 ## Sample Data
