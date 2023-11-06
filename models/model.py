@@ -57,6 +57,39 @@ class ImageTextRetrieval(ImageTextRetrievalPreTrainedModel):
         self.logit_scale = nn.Parameter(torch.tensor(self.config.logit_scale_init_value))
         
         self.post_init()
+        
+    def encode(self, model_name: Literal["text", "image"],
+            input_ids: Optional[torch.Tensor] = None,
+            attention_mask: Optional[torch.Tensor] = None,
+            token_type_ids: Optional[torch.Tensor] = None,
+            position_ids: Optional[torch.Tensor] = None,
+            head_mask: Optional[torch.Tensor] = None,
+            inputs_embeds: Optional[torch.Tensor] = None,
+            output_attentions: Optional[bool] = None,
+            output_hidden_states: Optional[bool] = None,
+            return_dict: Optional[bool] = None,
+            pixel_values: Tensor = None
+            ):
+        
+        if model_name == "text":
+            self.text_encoder(
+            input_ids,
+            attention_mask=attention_mask,
+            token_type_ids=token_type_ids,
+            position_ids=position_ids,
+            head_mask=head_mask,
+            inputs_embeds=inputs_embeds,
+            output_attentions=output_attentions,
+            output_hidden_states=output_hidden_states,
+            return_dict=return_dict,
+            ).last_hidden_state[:, 0, :]
+        
+        elif model_name == "image":
+            self.image_encoder(
+            pixel_values=pixel_values,
+            output_hidden_states=output_hidden_states,
+            ).pooler_output[:, :, 0, 0]
+
          
     def forward(
         self,
