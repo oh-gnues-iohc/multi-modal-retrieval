@@ -59,7 +59,7 @@ For detailed instructions, please refer to the official Hugging Face documentati
             ):
         
         if model_name == "text":
-            self.text_encoder(
+            return self.text_encoder(
             input_ids,
             attention_mask=attention_mask,
             token_type_ids=token_type_ids,
@@ -72,7 +72,7 @@ For detailed instructions, please refer to the official Hugging Face documentati
             ).last_hidden_state[:, 0, :]
         
         elif model_name == "image":
-            self.image_encoder(
+            return self.image_encoder(
             pixel_values=pixel_values,
             output_hidden_states=output_hidden_states,
             ).pooler_output[:, :, 0, 0]

@@ -72,7 +72,7 @@ class ImageTextRetrieval(ImageTextRetrievalPreTrainedModel):
             ):
         
         if model_name == "text":
-            self.text_encoder(
+            return self.text_encoder(
             input_ids,
             attention_mask=attention_mask,
             token_type_ids=token_type_ids,
@@ -85,7 +85,7 @@ class ImageTextRetrieval(ImageTextRetrievalPreTrainedModel):
             ).last_hidden_state[:, 0, :]
         
         elif model_name == "image":
-            self.image_encoder(
+            return self.image_encoder(
             pixel_values=pixel_values,
             output_hidden_states=output_hidden_states,
             ).pooler_output[:, :, 0, 0]
