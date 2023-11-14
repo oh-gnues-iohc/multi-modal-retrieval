@@ -42,7 +42,7 @@ class ImageTextRetrievalConfig(PretrainedConfig):
             'num_hidden_layers':num_hidden_layers,
             'num_attention_heads':num_attention_heads,
             'intermediate_size':intermediate_size,
-            'text_hidden_act':text_hidden_act,
+            'hidden_act':text_hidden_act,
             'hidden_dropout_prob':hidden_dropout_prob,
             'attention_probs_dropout_prob':attention_probs_dropout_prob,
             'max_position_embeddings':max_position_embeddings,
@@ -61,7 +61,7 @@ class ImageTextRetrievalConfig(PretrainedConfig):
             'hidden_sizes':hidden_sizes,
             'depths':depths,
             'layer_type':layer_type,
-            'image_hidden_act':image_hidden_act,
+            'hidden_act':image_hidden_act,
             'downsample_in_first_stage':downsample_in_first_stage,
             'out_features':out_features,
             }
